@@ -1,0 +1,51 @@
+body, html {
+	color: $color-font-default;
+	font-size: $font-size-default;
+	line-height: 140%;
+	padding: 10px;
+}
+
+a {
+	color: $color-a;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: $color-a-hover;
+	text-decoration: underline;
+}
+
+h1 {
+	color: $color-h1;
+	font-size: $font-size-xlarge;
+	line-height: 150%;
+	padding-bottom: 15px;
+}
+
+h2 {
+	color: $color-h2;
+	font-size: $font-size-large;
+	line-height: 150%;
+	border-bottom: $border-default;
+	padding-top: 20px;
+	padding-bottom: 2px;
+	margin-bottom: 10px;
+}
+
+p {
+	padding-bottom: 5px;
+}
+
+nav a::before {
+	content: '>>';
+}
+
+nav a {
+	font-size: $font-size-default;
+	line-height: 150%;
+	padding-bottom: 5px;
+}
+
+strong {
+	color: $color-strong;
+}
