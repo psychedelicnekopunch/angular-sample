@@ -18,7 +18,7 @@ app.controller('ObserverController', function ($scope, Eventlistener)
 
 	$scope.$watch('watchlistener', function (data , olddata)
 	{
-		console.log(olddata);
+		//console.log(olddata);
 		self.result = data;
 	});
 
