@@ -63,7 +63,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 1, ../sass/lib/_base-elements.scss */
+/* line 1, ../sass/base/_elements.scss */
 body, html {
   color: #888888;
   font-size: 14px;
@@ -71,19 +71,19 @@ body, html {
   padding: 10px;
 }
 
-/* line 8, ../sass/lib/_base-elements.scss */
+/* line 8, ../sass/base/_elements.scss */
 a {
   color: #cccccc;
   text-decoration: underline;
 }
 
-/* line 13, ../sass/lib/_base-elements.scss */
+/* line 13, ../sass/base/_elements.scss */
 a:hover {
   color: #666666;
   text-decoration: underline;
 }
 
-/* line 18, ../sass/lib/_base-elements.scss */
+/* line 18, ../sass/base/_elements.scss */
 h1 {
   color: #444444;
   font-size: 20px;
@@ -91,7 +91,7 @@ h1 {
   padding-bottom: 15px;
 }
 
-/* line 25, ../sass/lib/_base-elements.scss */
+/* line 25, ../sass/base/_elements.scss */
 h2 {
   color: #444444;
   font-size: 16px;
@@ -102,24 +102,24 @@ h2 {
   margin-bottom: 10px;
 }
 
-/* line 35, ../sass/lib/_base-elements.scss */
+/* line 35, ../sass/base/_elements.scss */
 p {
   padding-bottom: 5px;
 }
 
-/* line 39, ../sass/lib/_base-elements.scss */
+/* line 39, ../sass/base/_elements.scss */
 nav a::before {
   content: '>>';
 }
 
-/* line 43, ../sass/lib/_base-elements.scss */
+/* line 43, ../sass/base/_elements.scss */
 nav a {
   font-size: 14px;
   line-height: 150%;
   padding-bottom: 5px;
 }
 
-/* line 49, ../sass/lib/_base-elements.scss */
+/* line 49, ../sass/base/_elements.scss */
 strong {
   color: #334466;
 }

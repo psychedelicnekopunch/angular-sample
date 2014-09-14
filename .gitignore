@@ -1,3 +1,4 @@
 .sass-cache/*
+css/style.css
 js/bower_components/*
 !.gitkeep
