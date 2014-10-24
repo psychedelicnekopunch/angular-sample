@@ -13,9 +13,8 @@ app.controller('FormController', function ($scope, Form)
 
 	self.set = function(select)
 	{
-		//console.log(select);
+		console.log(select);
 		self.sendParams.id = select.id;
-		self.select.id     = select.id;
 		self.res = null;
 	};
 
