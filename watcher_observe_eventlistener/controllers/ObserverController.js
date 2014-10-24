@@ -1,7 +1,7 @@
-'use strict';
-
 app.controller('ObserverController', function ($scope, Eventlistener)
 {
+	'use strict';
+
 	var self = this;
 
 	self.sendParams = {
@@ -11,27 +11,20 @@ app.controller('ObserverController', function ($scope, Eventlistener)
 
 	self.onSetWatchlistener = function()
 	{
-		if(Eventlistener.setVal(self.sendParams)){
-			console.log('success');
-		}
+		Eventlistener.setVal(self.sendParams);
 	};
 
-	$scope.$watch('watchlistener', function (data , olddata)
+	$scope.$watch('watchlistener', function (data)
 	{
-		//console.log(olddata);
 		self.result = data;
 	});
 
-	$scope.$on('emitlistener', function (data)
+	$scope.$on('emitlistener', function (event, data)
 	{
 		self.result = data;
-		// I guess that you souldn't use any $watch event action into $emit and $broadcast
-		/*if(Eventlistener.setVal(self.sendParams)){
-			console.log('success');
-		}*/
 	});
 
-	$scope.$on('broadcastlistener', function (data)
+	$scope.$on('broadcastlistener', function (event, data)
 	{
 		self.result = data;
 	});
