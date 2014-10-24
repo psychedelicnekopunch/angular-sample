@@ -4,11 +4,12 @@ app.factory('Form', function ($rootScope)
 	var self = this;
 	var e = $rootScope;
 
-	e.formSelectList = null;
+	e.formGetSelectList = null;
+	self.list = null;
 
 	self.getSelectList = function()
 	{
-		e.formSelectList = [
+		self.list = [
 			{
 				id   : '10',
 				item : 'test1',
@@ -45,6 +46,7 @@ app.factory('Form', function ($rootScope)
 				}
 			},
 		];
+		e.formGetSelectList = moment().format('X');
 	};
 
 	return {
@@ -54,7 +56,7 @@ app.factory('Form', function ($rootScope)
 		},
 		getList: function()
 		{
-			return e.formSelectList;
+			return self.list;
 		}
 	};
 });

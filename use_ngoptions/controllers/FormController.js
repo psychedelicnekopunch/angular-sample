@@ -26,7 +26,7 @@ app.controller('FormController', function ($scope, Form)
 
 	Form.init();
 
-	$scope.$watch('formSelectList', function (data)
+	$scope.$watch('formGetSelectList', function (data)
 	{
 		if (!data) {
 			return;
@@ -34,7 +34,7 @@ app.controller('FormController', function ($scope, Form)
 		self.select.id     = '14';
 		self.sendParams.id = self.select.id;
 		self.lists         = Form.getList();
-		//console.log(data);
-		//console.log(self.lists);
+		console.log(data);
+		console.log(self.lists);
 	});
 });
