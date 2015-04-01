@@ -13,8 +13,8 @@ $ bower update
 
 ## Sample Code
 
-### $rootScope
-* [Watcher observe Eventlistener](watcher_observe_eventlistener/)
+### $http
+* [Use $http](use_http/)
 
-### Service / Factory
-* [How condition does a value in Service / Factory keep?](how_condition_does_a_value_in_service_factory_keep/)
+### $watch ($rootScope) / $on ($scope, $emit, $broadcast)
+* [Use $watch and $on](use_watch_and_on/)
