@@ -1,4 +1,4 @@
-app.controller('ObserverController', function ($scope, Eventlistener)
+app.controller('ObserverController', function($scope, Eventlistener)
 {
 	'use strict';
 
@@ -14,17 +14,17 @@ app.controller('ObserverController', function ($scope, Eventlistener)
 		Eventlistener.setVal(self.sendParams);
 	};
 
-	$scope.$watch('watchlistener', function (data)
+	$scope.$watch('watchlistener', function(data)
 	{
 		self.result = data;
 	});
 
-	$scope.$on('emitlistener', function (event, data)
+	$scope.$on('emitlistener', function(event, data)
 	{
 		self.result = data;
 	});
 
-	$scope.$on('broadcastlistener', function (event, data)
+	$scope.$on('broadcastlistener', function(event, data)
 	{
 		self.result = data;
 	});
