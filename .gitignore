@@ -1,6 +1,5 @@
 .sass-cache/*
 css/style.css
 js/bower_components/*
-use_http_for_api/
-use_momentjs/
+use_momentjs
 !.gitkeep
