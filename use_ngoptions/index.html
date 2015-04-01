@@ -8,6 +8,9 @@
 
 	<body>
 		<h1>Use ngOptions</h1>
+		<ul>
+			<li><a href="https://docs.angularjs.org/api/ng/directive/ngOptions" target="_blank">ngOptions</a></li>
+		</ul>
 		<div ng-controller="FormController as form">
 			<form ng-submit="form.go()">
 				<select ng-options="formList.select as formList.id + formList.item for formList in form.lists track by formList.id" ng-model="form.select" ng-change="form.set(form.select)"></select>
@@ -15,7 +18,6 @@
 					<button type="submit">go</button>
 				</div>
 			</form>
-			<hr>
 			<h2>Result</h2>
 			<div>{{form.res}}</div>
 		</div>
