@@ -17,24 +17,24 @@
 				<h2>Parent</h2>
 				<input type="text" ng-model="parent.sendParams.val"> (parent.sendParams.val)<br>
 				<button ng-click="parent.onSetWatchlistener()" type="button">$watch</button>
-				<button ng-click="$emit('emitlistener')" type="button">$emit</button>
-				<button ng-click="$broadcast('broadcastlistener')" type="button">$broadcast</button>
+				<button ng-click="$emit('emitlistener', parent.sendParams.val)" type="button">$emit</button>
+				<button ng-click="$broadcast('broadcastlistener', parent.sendParams.val)" type="button">$broadcast</button>
 			</form>
 			<div ng-controller="ObserverController as current">
 				<form action="">
 					<h2>Current</h2>
 					<input type="text" ng-model="current.sendParams.val"> (current.sendParams.val)<br>
 					<button ng-click="current.onSetWatchlistener()" type="button">$watch</button>
-					<button ng-click="$emit('emitlistener')" type="button">$emit</button>
-					<button ng-click="$broadcast('broadcastlistener')" type="button">$broadcast</button>
+					<button ng-click="$emit('emitlistener', current.sendParams.val)" type="button">$emit</button>
+					<button ng-click="$broadcast('broadcastlistener', current.sendParams.val)" type="button">$broadcast</button>
 				</form>
 				<div ng-controller="ObserverController as child">
 					<form action="">
 						<h2>Child</h2>
 						<input type="text" ng-model="child.sendParams.val"> (child.sendParams.val)<br>
 						<button ng-click="child.onSetWatchlistener()" type="button">$watch</button>
-						<button ng-click="$emit('emitlistener')" type="button">$emit</button>
-						<button ng-click="$broadcast('broadcastlistener')" type="button">$broadcast</button>
+						<button ng-click="$emit('emitlistener', child.sendParams.val)" type="button">$emit</button>
+						<button ng-click="$broadcast('broadcastlistener', child.sendParams.val)" type="button">$broadcast</button>
 					</form>
 					<h2>Result</h2>
 					<p>parent.result is {{parent.result}}</p>

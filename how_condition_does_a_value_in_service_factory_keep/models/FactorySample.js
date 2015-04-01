@@ -1,27 +1,27 @@
-'use strict';
-
 app.factory('FactorySample', function ($rootScope)
 {
-	var value = null;
+	'use strict';
 
+	var self = this;
 	var e = $rootScope;
 
+	self.value = null;
 	e.factorySampleVal = null;
 
-	var setVal = function(param)
+	self.setVal = function(param)
 	{
-		if(value === param){
+		if (self.value === param) {
 			return false;
 		}
 
-		value = param;
+		self.value = param;
 
 		return true;
 	};
 
-	var setVal2 = function(param)
+	self.setVal2 = function(param)
 	{
-		if(e.factorySampleVal === param){
+		if (e.factorySampleVal === param) {
 			return false;
 		}
 
@@ -33,15 +33,15 @@ app.factory('FactorySample', function ($rootScope)
 	return {
 		setVal: function(param)
 		{
-			return setVal(param);
+			return self.setVal(param);
 		},
 		setVal2: function(param)
 		{
-			return setVal2(param);
+			return self.setVal2(param);
 		},
 		getVal: function()
 		{
-			return value;
+			return self.value;
 		},
 		getVal2: function()
 		{
