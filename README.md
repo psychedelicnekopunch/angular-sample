@@ -1,15 +1,5 @@
 # AngularJsSample
-
-## first
-
-```bash
-# make style.css
-$compass compile
-
-# get and version check of js files
-$ cd tests
-$ bower update
-```
+this space just have easy codes
 
 ## Sample Code
 
