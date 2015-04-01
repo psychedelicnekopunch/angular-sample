@@ -25,15 +25,15 @@ app.controller('FormController', function ($scope, Form)
 
 	Form.init();
 
-	$scope.$watch('formGetSelectList', function (data)
+	$scope.$watch('formGetSelectList', function (res)
 	{
-		if (!data) {
+		if (!res) {
 			return;
 		}
 		self.select.id     = '14';
 		self.sendParams.id = self.select.id;
 		self.lists         = Form.getList();
-		console.log(data);
+		console.log(res);
 		console.log(self.lists);
 	});
 });

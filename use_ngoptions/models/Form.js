@@ -2,9 +2,9 @@ app.factory('Form', function ($rootScope)
 {
 	'use strict';
 	var self = this;
-	var e = $rootScope;
 
-	e.formGetSelectList = null;
+	$rootScope.formGetSelectList = null;
+
 	self.list = null;
 
 	self.getSelectList = function()
@@ -46,7 +46,7 @@ app.factory('Form', function ($rootScope)
 				}
 			},
 		];
-		e.formGetSelectList = moment().format('X');
+		$rootScope.formGetSelectList = moment().format('X');
 	};
 
 	return {

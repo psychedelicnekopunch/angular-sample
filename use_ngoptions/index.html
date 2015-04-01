@@ -9,7 +9,7 @@
 	<body>
 		<h1>Use ngOptions</h1>
 		<div ng-controller="FormController as form">
-			<form ng-submit="form.go()" action="">
+			<form ng-submit="form.go()">
 				<select ng-options="formList.select as formList.id + formList.item for formList in form.lists track by formList.id" ng-model="form.select" ng-change="form.set(form.select)"></select>
 				<div>
 					<button type="submit">go</button>
