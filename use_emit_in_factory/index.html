@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="AngularJsSample">
+	<head>
+		<meta charset="UTF-8">
+		<title>Use $emit in factory | AngularJsSample | masa69.net</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+
+	<body>
+		<h1>Use $emit in factory</h1>
+		<ul>
+			<li><a href="https://docs.angularjs.org/guide/scope" target="_blank">$emit, $broadcast, $on</a></li>
+		</ul>
+
+		<div ng-controller="SampleController as sample">
+			<form ng-submit="sample.set()">
+				<input type="text" ng-model="sample.val"><br>
+				<button type="submit">set() -> $emit (factory) -> $on (controller)</button>
+			</form>
+			<h2>{{sample.res}}</h2>
+		</div>
+
+		<script type="text/javascript" src="../js/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="../js/module/ngApp.js"></script>
+		<script type="text/javascript" src="controllers/SampleController.js"></script>
+		<script type="text/javascript" src="models/Sample.js"></script>
+	</body>
+</html>
