@@ -123,3 +123,8 @@ nav a {
 strong {
   color: #346;
 }
+
+/* line 53, ../sass/base/_elements.scss */
+ul {
+  padding-bottom: 15px;
+}
