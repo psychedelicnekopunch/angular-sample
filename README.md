@@ -3,6 +3,9 @@ this space just have easy codes
 
 ## Sample Code
 
+### Directive
+* [Use Directive with template](use_directive/)
+
 ### $http
 * [Use $http](use_http/)
 
