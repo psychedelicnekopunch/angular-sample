@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="AngularJsSample">
+	<head>
+		<meta charset="UTF-8">
+		<title>Use Directive with template | AngularJsSample | masa69.net</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+
+	<body>
+		<h1>Use Directive with template</h1>
+		<ul>
+			<li><a href="https://docs.angularjs.org/guide/directive" target="_blank">Directives</a></li>
+		</ul>
+
+		<div ng-controller="IndexController as index">
+			<div>
+				<h2>US Artists</h2>
+				<list-sample set="index.listSample1"></list-sample>
+				<list-save-sample set="index.listSample1"></list-save-sample>
+				<list-add-sample set="index.listSample1"></list-add-sample>
+			</div>
+			<div>
+				<h2>UK Artists</h2>
+				<list-sample set="index.listSample2"></list-sample>
+				<list-save-sample set="index.listSample2"></list-save-sample>
+				<list-add-sample set="index.listSample2"></list-add-sample>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/lodash/lodash.min.js"></script>
+		<script type="text/javascript" src="../js/module/ngApp.js"></script>
+		<script type="text/javascript" src="controllers/IndexController.js"></script>
+		<script type="text/javascript" src="models/MusicArtist.js"></script>
+		<script type="text/javascript" src="directives/listSample.js"></script>
+	</body>
+</html>
