@@ -50,6 +50,10 @@ app.factory('Chat', function($rootScope)
 		{
 			return self.lists;
 		},
+		lists2: function()
+		{
+			return 'test';
+		},
 		add: function(params)
 		{
 			self.add(params);
