@@ -5,6 +5,7 @@ this space just have easy codes
 
 ### Directive
 * [Use Directive with template](use_directive/)
+* [Use Directive with Module Pattern](use_directive_with_modulepattern/)
 
 ### $http
 * [Use $http](use_http/)

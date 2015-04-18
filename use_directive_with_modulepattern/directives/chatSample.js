@@ -7,10 +7,10 @@ app.directive('chatSample', function()
 		scope: {
 			self: '=set'
 		},
-		templateUrl: '/AngularJsSample/use_directive_pattern/templates/chatSample.html',
+		templateUrl: '/AngularJsSample/use_directive_with_modulepattern/templates/chatSample.html',
 	};
 })
-.directive('chatAddSample', function()
+.directive('chatSampleAdd', function()
 {
 	'use strict';
 
@@ -19,6 +19,6 @@ app.directive('chatSample', function()
 		scope: {
 			self: '=set'
 		},
-		templateUrl: '/AngularJsSample/use_directive_pattern/templates/chatAddSample.html',
+		templateUrl: '/AngularJsSample/use_directive_with_modulepattern/templates/chatSampleAdd.html',
 	};
 });
