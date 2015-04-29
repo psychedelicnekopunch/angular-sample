@@ -3,6 +3,9 @@ this space just have easy codes
 
 ## Sample Code
 
+### MVC Sample
+* [MVC Sample](mvc_sample/)
+
 ### Directive
 * [Use Directive with template](use_directive/)
 * [Use Directive with Module Pattern](use_directive_with_modulepattern/)
