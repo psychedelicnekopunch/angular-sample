@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="AngularJsSample">
+	<head>
+		<meta charset="UTF-8">
+		<title>MVC Sample | AngularJsSample | masa69.net</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+
+	<body>
+		<h1>MVC Sample</h1>
+		<ul>
+			<li><a href="https://docs.angularjs.org/api/auto/service/$provide" target="_blank">$provide</a></li>
+		</ul>
+
+		<div ng-controller="IndexController as index">
+			<div>
+				<h2>Chat Sample</h2>
+				<chat-sample set="index.chatSample"></chat-sample>
+				<h2>Chat Sample2</h2>
+				<chat-sample set="index.chatSample2"></chat-sample>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="../js/bower_components/lodash/lodash.min.js"></script>
+		<script type="text/javascript" src="../js/module/ngApp.js"></script>
+		<script type="text/javascript" src="controllers/IndexController.js"></script>
+		<script type="text/javascript" src="models/Chat.js"></script>
+		<script type="text/javascript" src="models/ChatSampleBase.js"></script>
+		<script type="text/javascript" src="models/ChatSample2.js"></script>
+		<script type="text/javascript" src="directives/chatSample.js"></script>
+	</body>
+</html>

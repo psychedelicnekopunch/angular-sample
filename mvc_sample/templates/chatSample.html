@@ -1,0 +1,10 @@
+<ul>
+	<li ng-repeat="list in self.lists">
+		<a href="" ng-click="self.delete(list.id)">[x]</a>
+		<a href="" ng-click="self.prepareSave(list.id)">{{list.name}} / <strong>{{list.comment}}</strong></a>
+	</li>
+</ul>
+<form ng-submit="self.add()">
+	<input type="text" ng-model="self.sendAddParams.name"> / <input type="text" ng-model="self.sendAddParams.comment">
+	<button type="submit">add</button>
+</form>
