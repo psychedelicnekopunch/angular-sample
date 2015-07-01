@@ -1,8 +1,8 @@
-app.factory('ChatSample2', function(ChatSampleBase, Chat)
+app.factory('ChatSample2', function(ChatSample, Chat)
 {
 	'use strict';
 
-	var self = angular.extend(this, ChatSampleBase);
+	var self = angular.extend(this, ChatSample);
 
 	var sendAddParams = {
 		name    : null,
@@ -10,7 +10,7 @@ app.factory('ChatSample2', function(ChatSampleBase, Chat)
 		type    : null,
 	};
 
-	// self.sendAddParams = sendAddParams;
+	self.sendAddParams = sendAddParams;
 
 	self.commentInit = function()
 	{
@@ -21,7 +21,7 @@ app.factory('ChatSample2', function(ChatSampleBase, Chat)
 	{
 		console.log(self.sendAddParams);
 		self.sendAddParams.comment = 'override add()';
-		// Chat.add(self.sendAddParams);
+		Chat.add(self.sendAddParams);
 	};
 
 	console.log(self);
