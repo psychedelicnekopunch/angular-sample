@@ -1,4 +1,4 @@
-app.controller('IndexController', function($scope, ChatSampleBase, ChatSample2)
+app.controller('IndexController', function($scope, ChatSample, ChatSample2)
 {
 	'use strict';
 
@@ -10,7 +10,7 @@ app.controller('IndexController', function($scope, ChatSampleBase, ChatSample2)
 		self.chatSample2.init();
 	};
 
-	self.chatSample  = ChatSampleBase;
+	self.chatSample  = ChatSample;
 	self.chatSample2 = ChatSample2;
 
 	$scope.$root.$on('lists:init', function()
