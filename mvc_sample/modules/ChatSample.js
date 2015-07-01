@@ -1,4 +1,4 @@
-app.factory('ChatSampleBase', function(Chat)
+app.factory('ChatSample', function(Chat)
 {
 	'use strict';
 
