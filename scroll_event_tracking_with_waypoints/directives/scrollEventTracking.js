@@ -49,7 +49,7 @@ app.directive('scrollEventTracking', function($rootScope, $window)
 			// console.log(attrs.eventName);
 			// console.log(attrs.scrollbyOffset);
 
-			var waypoints = $('scroll-event-tracking:eq(' + scope.$index + ')').waypoint({
+			var waypoints = $(element).waypoint({
 				handler: function(direction) {
 					console.log('Scrolled to waypoint!');
 					emitEvent();
