@@ -8,6 +8,7 @@ this space just have easy codes
 
 ### Directive
 * [Scroll Event Tracking](scroll_event_tracking/)
+* [Scroll Event Tracking - with Waypoints](scroll_event_tracking_with_waypoints/)
 * [Use Directive with template](use_directive/)
 * [Use Directive with Module Pattern](use_directive_with_modulepattern/)
 
