@@ -7,6 +7,7 @@ this space just have easy codes
 * [MVC Sample](mvc_sample/)
 
 ### Directive
+* [Scroll Event Tracking](scroll_event_tracking/)
 * [Use Directive with template](use_directive/)
 * [Use Directive with Module Pattern](use_directive_with_modulepattern/)
 
