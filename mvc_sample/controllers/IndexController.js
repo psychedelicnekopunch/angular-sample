@@ -22,11 +22,8 @@ app.controller('IndexController', function($scope, ChatSample, ChatSample2)
 	{
 		self.chatSample.commentInit();
 		self.chatSample2.commentInit();
-
 		// console.log(self.chatSample);
 		// console.log(self.chatSample.contents.lists);
-		// why did i get this?
-		console.log(lists);
 	});
 
 	$scope.$root.$on('lists:delete', function()
