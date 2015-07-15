@@ -2,35 +2,35 @@ app.factory('ChatSample', function(Chat)
 {
 	'use strict';
 
-	var lists = null;
+	var self = this;
 
-	var sendAddParams = {
+	self.contents = {
+		lists : null,
+	};
+
+	self.sendAddParams = {
 		name    : null,
 		comment : null,
 	};
 
-	var init = function()
+	self.init = function()
 	{
 		Chat.init();
+		self.contents.lists = Chat.contents.lists;
 	};
 
-	var commentInit = function()
+	self.commentInit = function()
 	{
-		sendAddParams.comment = null;
+		self.sendAddParams.comment = null;
 	};
 
-	var refreshLists = function()
+	self.add = function()
 	{
-		this.lists = Chat.lists();
+		// console.log(self.sendAddParams);
+		Chat.add(self.sendAddParams);
 	};
 
-	var add = function()
-	{
-		console.log(sendAddParams);
-		Chat.add(sendAddParams);
-	};
-
-	var remove = function(id)
+	self.remove = function(id)
 	{
 		var params = {
 			id: id,
@@ -39,13 +39,12 @@ app.factory('ChatSample', function(Chat)
 	};
 
 	return {
-		init         : init,
-		commentInit  : commentInit,
-		refreshLists : refreshLists,
+		init         : self.init,
+		commentInit  : self.commentInit,
 		// for view
-		lists         : lists,
-		sendAddParams : sendAddParams,
-		add           : add,
-		delete        : remove
+		contents      : self.contents,
+		sendAddParams : self.sendAddParams,
+		add           : self.add,
+		delete        : self.remove
 	};
 });
