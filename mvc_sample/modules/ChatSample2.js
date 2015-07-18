@@ -4,23 +4,25 @@ app.factory('ChatSample2', function(ChatSample, Chat)
 
 	var self = angular.extend(this, ChatSample);
 
-	var sendAddParams = {
+	// override
+	self.sendAddParams = {
 		name    : null,
 		comment : null,
 		type    : null,
 	};
 
-	self.sendAddParams = sendAddParams;
-
+	// override
 	self.commentInit = function()
 	{
-		self.sendAddParams.comment = 'override commentInit()';
+		// self.sendAddParams.comment = 'override commentInit()';
+		self.sendAddParams.comment = '';
 	};
 
+	// override
 	self.add = function()
 	{
-		console.log(self.sendAddParams);
-		self.sendAddParams.comment = 'override add()';
+		// console.log(self.sendAddParams);
+		self.sendAddParams.type = 'override add()';
 		Chat.add(self.sendAddParams);
 	};
 

@@ -2,27 +2,36 @@ app.factory('Chat', function($rootScope)
 {
 	'use strict';
 
-	self.lists = null;
+	self.contents = {
+		lists: null,
+	};
 
 	self.init = function()
 	{
-		self.lists = [];
+		self.contents.lists = [];
 		$rootScope.$emit('lists:init');
 	};
 
 	self.add = function(params)
 	{
-		var _params = {
+		// console.log(params);
+		var prepare = {
 			id : self.getNewId()
 		};
-		_.merge(_params, params);
-		self.lists.push(_params);
+		/*
+		 * the following code is wrong
+		 * _.merge(params, prepare);
+		 * self.lists.push(params);
+		 */
+		_.merge(prepare, params);
+		// console.log(prepare);
+		self.contents.lists.push(prepare);
 		$rootScope.$emit('lists:add');
 	};
 
 	self.delete = function(params)
 	{
-		_.remove(self.lists, function(obj) {
+		_.remove(self.contents.lists, function(obj) {
 			return obj.id == params.id;
 		});
 		$rootScope.$emit('lists:delete');
@@ -32,7 +41,7 @@ app.factory('Chat', function($rootScope)
 	{
 		var res = '0';
 
-		_.map(self.lists, function(obj)
+		_.map(self.contents.lists, function(obj)
 		{
 			res = (obj.id > res) ? obj.id : res;
 		});
@@ -46,14 +55,7 @@ app.factory('Chat', function($rootScope)
 		{
 			self.init();
 		},
-		lists: function()
-		{
-			return self.lists;
-		},
-		lists2: function()
-		{
-			return 'test';
-		},
+		contents: self.contents,
 		add: function(params)
 		{
 			self.add(params);

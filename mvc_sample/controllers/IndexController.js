@@ -15,19 +15,16 @@ app.controller('IndexController', function($scope, ChatSample, ChatSample2)
 
 	$scope.$root.$on('lists:init', function()
 	{
-		self.chatSample.refreshLists();
-		self.chatSample2.refreshLists();
+
 	});
 
 	$scope.$root.$on('lists:add', function()
 	{
-		self.chatSample.refreshLists();
-		self.chatSample2.refreshLists();
-
 		self.chatSample.commentInit();
 		self.chatSample2.commentInit();
 
-		console.log(self.chatSample.lists);
+		// console.log(self.chatSample);
+		// console.log(self.chatSample.contents.lists);
 		// why did i get this?
 		console.log(lists);
 	});
