@@ -14,7 +14,7 @@ var angular2_1 = require('angular2/angular2');
 // Annotation section
 var MyAppComponent = (function () {
     function MyAppComponent() {
-        this.name = 'Alice';
+        this.name = 'Masa69';
     }
     MyAppComponent = __decorate([
         angular2_1.Component({
@@ -27,3 +27,4 @@ var MyAppComponent = (function () {
     ], MyAppComponent);
     return MyAppComponent;
 })();
+angular2_1.bootstrap(MyAppComponent);

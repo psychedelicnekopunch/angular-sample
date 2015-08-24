@@ -15,6 +15,8 @@ class MyAppComponent {
 	name: string;
 
 	constructor() {
-		this.name = 'Alice';
+		this.name = 'Masa69';
 	}
 }
+
+bootstrap(MyAppComponent);
