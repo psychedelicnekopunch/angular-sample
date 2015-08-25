@@ -2,3 +2,4 @@
 js/bower_components/*
 use_momentjs
 !.gitkeep
+use_angular2/typings/*
