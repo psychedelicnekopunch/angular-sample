@@ -1,5 +1,3 @@
-.sass-cache/*
-js/bower_components/*
-use_momentjs
+bower_components
+node_modules
 !.gitkeep
-use_angular2/typings/*
