@@ -1,0 +1,100 @@
+.btn {
+	display: inline-block;
+	border-box: border;
+	@include margin(5px);
+	a, button {
+		width: 100%;
+		display: block;
+		background: none;
+		border: none;
+		text-decoration: none;
+		font-weight: bold;
+		border-radius: 2px;
+		&:active, &:hover, &:focus {
+			outline: none;
+		}
+		&:active {
+			// box-shadow: inset 0 3px 5px rgba(#000, .125);
+		}
+	}
+	&.primary {
+		a, button {
+			background-color: $color-btn-primary;
+			color: $color-white;
+			&:active, &:hover, &:focus {
+				background-color: shade($color-btn-primary, 5%);
+			}
+		}
+	}
+	&.secondary {
+		a, button {
+			background-color: $color-btn-secondary;
+			color: $color-white;
+			&:active, &:hover, &:focus {
+				background-color: shade($color-btn-secondary, 15%);
+			}
+		}
+	}
+	&.default {
+		a, button {
+			color: $color-a;
+			box-shadow: none;
+			&:active, &:hover, &:focus {
+				background-color: shade($color-btn-default, 5%);
+			}
+		}
+	}
+	&.danger {
+		a, button {
+			background-color: $color-btn-danger;
+			color: $color-white;
+			&:active, &:hover, &:focus {
+				background-color: shade($color-btn-danger, 5%);
+			}
+		}
+	}
+	&.large {
+		a, button {
+			font-size: $font-size-large;
+			line-height: $line-height;
+			padding: 15px 22px;
+			small {
+				font-size: $font-size-default;
+				line-height: $line-height;
+			}
+		}
+	}
+	&.medium {
+		a, button {
+			font-size: $font-size-default;
+			line-height: $line-height;
+			padding: 10px 15px;
+			small {
+				font-size: $font-size-small;
+				line-height: $line-height;
+			}
+		}
+	}
+	&.small {
+		a, button {
+			font-size: $font-size-small;
+			line-height: $line-height;
+			padding: 8px 8px;
+			small {
+				font-size: $font-size-xsmall;
+				line-height: $line-height;
+			}
+		}
+	}
+	&.block {
+		width: 100%;
+		@include margin(null 0);
+	}
+	&.disable {
+		opacity: .4;
+	}
+	&.hidden {
+		position: fixed;
+		top: -1000px;
+	}
+}

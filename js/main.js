@@ -1,19 +1,42 @@
-/**
- * smaple main.js
- */
+var app = angular.module('angular-sample', ['ngSanitize', 'ngRoute', 'ngCookies', 'ngAnimate', 'ngTouch', 'ngMessages']);
 
-var app = angular.module('AngularJsSample', ['ngSanitize', 'ngAnimate', 'ngRoute', 'ngCookies', 'ngTouch', 'ngMaterial', 'ngMessages', 'angularMoment']);
+class Config {
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
-{
-	$locationProvider.html5Mode({
-		enabled      : true,
-		requireBase  : true,
-		rewriteLinks : false,
-	});
-}]);
+	static getInstance($routeProvider, $locationProvider) {
+		Config.instance = new Config($routeProvider, $locationProvider);
+		return Config.instance;
+	}
 
-// setting for angular-moment
-app.run(['amMoment', function(amMoment) {
-	amMoment.changeLocale('ja');
-}]);
+	constructor($routeProvider, $locationProvider) {
+		'use strict';
+		// ルーティング (Routing)
+		$routeProvider
+			// トップページ
+			.when('/', {
+				templateUrl  : '/templates/index/index.html',
+				controller   : 'IndexController',
+				controllerAs : 'self',
+			})
+			// ToDoサンプル
+			.when('/todo.html', {
+				templateUrl  : '/templates/todo/index.html',
+				controller   : 'TodoController',
+				controllerAs : 'self',
+			});
+
+		/*$locationProvider.html5Mode({
+			enabled      : true,
+			requireBase  : true,
+			rewriteLinks : false,
+		});*/
+		$locationProvider.html5Mode({
+			enabled      : true,
+			requireBase  : true,
+			rewriteLinks : true,
+		});
+	}
+}
+
+Config.getInstance.$inject = ['$routeProvider', '$locationProvider'];
+
+app.config(Config.getInstance);
