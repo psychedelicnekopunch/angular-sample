@@ -1,25 +1,28 @@
 {
-  "name": "AngularJsSample",
-  "version": "0.0.0",
-  "homepage": "https://github.com/masa69/AngularJsSample",
-  "authors": [
-    "masa69"
+  "name": "",
+  "description": "",
+  "main": "",
+  "authors": [],
+  "license": "ISC",
+  "homepage": "",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ],
-  "private": true,
-  "description": "this space just have easy code for my question about AngularJs",
-  "license": "MIT",
   "dependencies": {
-    "jquery": "~2.x",
-    "angular": "~1.3.x",
-    "angular-route": "~1.3.x",
-    "angular-loader": "~1.3.x",
-    "angular-animate": "~1.3.x",
-    "angular-mocks": "~1.3.x",
-    "angular-sanitize": "~1.3.x",
-    "angular-cookies": "~1.2.x",
-    "angular-moment": "~0.8.x",
-    "angular-material": "~0.x",
-    "lodash": "~3.6.0",
-    "waypoints": "~3.1.1"
+    "angular": "~1.5.x",
+    "angular-animate": "~1.5.x",
+    "angular-aria": "~1.5.x",
+    "angular-cookies": "~1.5.x",
+    "angular-messages": "~1.5.x",
+    "angular-sanitize": "~1.5.x",
+    "angular-route": "~1.5.x",
+    "angular-touch": "~1.5.x",
+    "moment": "^2.12.0",
+    "neat-simple-grid": "*"
   }
 }

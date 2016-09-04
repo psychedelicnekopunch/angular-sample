@@ -1,15 +1,32 @@
-$font-size-xlarge       : 20px;
-$font-size-large        : 16px;
-$font-size-default      : 14px;
-$font-size-small        : 12px;
-$font-size-xsmall       : 10px;
+$font-family : sans-serif, Roboto, "Helvetica Neue";
 
-$color-font-default     : #888;
-$color-h1               : #444;
-$color-h2               : #444;
-$color-strong           : #346;
+$color-text: #444;
 
-$color-a                : #ccc;
-$color-a-hover          : #666;
+$color-link-a     : #00a;
+$color-link-hover : #04e;
 
-$border-default         : 1px #ddd solid;
+$line-height: 150%;
+
+$font-size-xxlarge : 26px;
+$font-size-xlarge  : 22px;
+$font-size-large   : 18px;
+$font-size-default : 13px;
+$font-size-small   : 12px;
+$font-size-xsmall  : 11px;
+$font-size-xxsmall : 10px;
+
+$color-btn-primary   : #f07f95;
+$color-btn-secondary : #303f9f;
+$color-btn-default   : #fff;
+$color-btn-danger    : #f44;
+
+$color-white           : #fff;
+$color-pink            : #f77;
+$color-red             : #f33;
+$color-hihglightred    : #fff9f9;
+$color-blue            : #44c;
+$color-hihglightblue   : #f9f9ff;
+$color-green           : #4c4;
+$color-hihglightgreen  : #efd;
+$color-hihglightyellow : #ffd;
+$color-black           : #000;
