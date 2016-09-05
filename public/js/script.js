@@ -1,24 +1,25 @@
 'use strict';
 
+var app = angular.module('angular-sample', ['ngSanitize', 'ngRoute', 'ngCookies', 'ngAnimate', 'ngTouch', 'ngMessages']);
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var app = angular.module('angular-sample', ['ngSanitize', 'ngRoute', 'ngCookies', 'ngAnimate', 'ngTouch', 'ngMessages']);
-
-var Config = function () {
-	_createClass(Config, null, [{
+var Routing = function () {
+	_createClass(Routing, null, [{
 		key: 'getInstance',
 		value: function getInstance($routeProvider, $locationProvider) {
-			Config.instance = new Config($routeProvider, $locationProvider);
-			return Config.instance;
+			Routing.instance = new Routing($routeProvider, $locationProvider);
+			return Routing.instance;
 		}
 	}]);
 
-	function Config($routeProvider, $locationProvider) {
+	function Routing($routeProvider, $locationProvider) {
 		'use strict';
 
-		_classCallCheck(this, Config);
+		_classCallCheck(this, Routing);
 
 		$routeProvider.when('/', {
 			templateUrl: '/templates/index/index.html',
@@ -37,12 +38,12 @@ var Config = function () {
 		});
 	}
 
-	return Config;
+	return Routing;
 }();
 
-Config.getInstance.$inject = ['$routeProvider', '$locationProvider'];
+Routing.getInstance.$inject = ['$routeProvider', '$locationProvider'];
 
-app.config(Config.getInstance);
+app.config(Routing.getInstance);
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
