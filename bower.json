@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "github-angular-sample",
   "description": "",
   "main": "",
   "authors": [],
@@ -22,7 +22,6 @@
     "angular-sanitize": "~1.5.x",
     "angular-route": "~1.5.x",
     "angular-touch": "~1.5.x",
-    "moment": "^2.12.0",
-    "neat-simple-grid": "*"
+    "moment": "^2.x"
   }
 }
