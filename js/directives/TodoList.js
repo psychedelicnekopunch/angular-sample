@@ -14,12 +14,14 @@ class TodoList {
 		this.scope    = { users: '=setUsers' };
 		this.template = `
 
-<h4>TODOs</h4>
-<ul>
-	<li ng-repeat="user in users">
-		<todo-item set-user="user"></todo-item>
-	</li>
-</ul>
+<div class="todo-list">
+	<h4>TODOs</h4>
+	<ul class="todo-list-content">
+		<li ng-repeat="user in users">
+			<todo-list-item set-user="user"></todo-list-item>
+		</li>
+	</ul>
+</div>
 
 		`;
 	}

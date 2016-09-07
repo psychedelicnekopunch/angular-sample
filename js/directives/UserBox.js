@@ -16,15 +16,17 @@ class UserBox {
 		this.scope    = { users: '=setUsers' };
 		this.template = `
 
-<h4>USER LIST</h4>
-<ul>
-	<li ng-repeat="user in self.users">{{ user.id }}: {{ user.name }}</li>
-</ul>
+<div class="user-box">
+	<h4>USER LIST</h4>
+	<ul>
+		<li ng-repeat="user in self.users">{{ user.id }}: {{ user.name }}</li>
+	</ul>
 
-<form ng-submit="self.add()">
-	<input type="text" ng-model="self.userName">
-	<button type="submit">send</button>
-</form>
+	<form ng-submit="self.add()">
+		<input type="text" ng-model="self.userName">
+		<button type="submit">add</button>
+	</form>
+</div>
 
 		`;
 	}

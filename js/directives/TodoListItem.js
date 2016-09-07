@@ -1,8 +1,8 @@
-class TodoItem {
+class TodoListItem {
 
 	static getInstance(Directive) {
-		TodoItem.instance = new TodoItem(Directive);
-		return TodoItem.instance;
+		TodoListItem.instance = new TodoListItem(Directive);
+		return TodoListItem.instance;
 	}
 
 	constructor(Directive) {
@@ -15,21 +15,25 @@ class TodoItem {
 		this.scope    = { user: '=setUser' };
 		this.template = `
 
-{{ user.name }}
-<ul>
-	<li ng-repeat="comment in self.comments track by $index">{{ comment }}</li>
-</ul>
+<div class="todo-list-item">
+	{{ user.name }}
+	<ul class="comment">
+		<li ng-repeat="comment in self.comments track by $index">
+			{{ comment.body }} <small>({{ comment.createdAt }})</small>
+		</li>
+	</ul>
 
-<form ng-submit="self.comment()">
-	<input type="text" ng-model="self.body">
-	<button type="submit">send</button>
-</form>
+	<form ng-submit="self.comment()">
+		<input type="text" ng-model="self.body">
+		<button type="submit">comment</button>
+	</form>
+</div>
 
 		`;
 	}
 
 	link(scopes, attrs, elemensts, controllers) {
-		console.log('TodoItem');
+		console.log('TodoListItem');
 		// console.log(scopes);
 		// console.log(attrs);
 		// console.log(elemensts);
@@ -52,7 +56,10 @@ class TodoItem {
 		};
 
 		const addComment = (comment) => {
-			self.comments.push(comment);
+			self.comments.push({
+				body: comment,
+				createdAt: moment().format('YYYY-MM-DD HH:mm:ss'),
+			});
 			initBody();
 			scopes.$emit('commented.emit');
 		};
@@ -90,6 +97,6 @@ class TodoItem {
 	}
 }
 
-TodoItem.getInstance.$inject = ['Directive'];
+TodoListItem.getInstance.$inject = ['Directive'];
 
-app.directive('todoItem', TodoItem.getInstance);
+app.directive('todoListItem', TodoListItem.getInstance);

@@ -11,8 +11,9 @@ class HeaderBox {
 		this.scope    = {};
 		this.template = `
 
-<a href="/">home</a>
-header
+<div class="header-box">
+	<div><a href="/">home</a></div>
+</div>
 
 		`;
 	}

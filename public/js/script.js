@@ -109,7 +109,7 @@ var HeaderBox = function () {
 		this.require = ['^^todoBox'];
 		this.restrict = 'E';
 		this.scope = {};
-		this.template = '\n\n<a href="/">home</a>\nheader\n\n\t\t';
+		this.template = '\n\n<div class="header-box">\n\t<div><a href="/">home</a></div>\n</div>\n\n\t\t';
 	}
 
 	return HeaderBox;
@@ -139,7 +139,7 @@ var TodoBox = function () {
 		this.User_ = User;
 
 		this.restrict = 'E';
-		this.scope = {}, this.template = '\n\n<div class="todo-box">\n\t<nav>\n\t\t<ul>\n\t\t\t<li ng-click="self.moveContent(\'user\')" ng-class="{ active: self.content.user }">user</li>\n\t\t\t<li ng-click="self.moveContent(\'talk\')"  ng-class="{ active: self.content.talk }">talk</li>\n\t\t</ul>\n\t</nav>\n\t<div class="content">\n\t\t<section ng-if="self.content.user">\n\t\t\t<user-box set-users="self.users"></user-box>\n\t\t</section>\n\t\t<section ng-show="self.content.talk">\n\t\t\t<todo-list set-users="self.users"></todo-list>\n\t\t</section>\n\t</div>\n</div>\n\n\t\t';
+		this.scope = {}, this.template = '\n\n<div class="todo-box">\n\t<nav class="todo-box-menu">\n\t\t<ul>\n\t\t\t<li ng-click="self.moveContent(\'user\')" ng-class="{ active: self.content.user }">user</li>\n\t\t\t<li ng-click="self.moveContent(\'talk\')"  ng-class="{ active: self.content.talk }">talk</li>\n\t\t</ul>\n\t</nav>\n\t<div class="todo-box-content">\n\t\t<section ng-if="self.content.user">\n\t\t\t<user-box set-users="self.users"></user-box>\n\t\t</section>\n\t\t<section ng-show="self.content.talk">\n\t\t\t<todo-list set-users="self.users"></todo-list>\n\t\t</section>\n\t</div>\n</div>\n\n\t\t';
 	}
 
 	_createClass(TodoBox, [{
@@ -222,95 +222,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TodoItem = function () {
-	_createClass(TodoItem, null, [{
-		key: 'getInstance',
-		value: function getInstance(Directive) {
-			TodoItem.instance = new TodoItem(Directive);
-			return TodoItem.instance;
-		}
-	}]);
-
-	function TodoItem(Directive) {
-		'use strict';
-
-		_classCallCheck(this, TodoItem);
-
-		this.Directive_ = Directive;
-
-		this.require = ['^^?todoList', '^^?talkBoxs'];
-		this.restrict = 'E';
-		this.scope = { user: '=setUser' };
-		this.template = '\n\n{{ user.name }}\n<ul>\n\t<li ng-repeat="comment in self.comments track by $index">{{ comment }}</li>\n</ul>\n\n<form ng-submit="self.comment()">\n\t<input type="text" ng-model="self.body">\n\t<button type="submit">send</button>\n</form>\n\n\t\t';
-	}
-
-	_createClass(TodoItem, [{
-		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
-			var _this = this;
-
-			console.log('TodoItem');
-
-
-			scopes.self = {
-				body: '',
-				comments: []
-			};
-
-			var self = scopes.self;
-
-			var initBody = function initBody() {
-				self.body = '';
-			};
-
-			self.comment = function () {
-				if (self.body) {
-					return addComment(self.body);
-				}
-			};
-
-			var addComment = function addComment(comment) {
-				self.comments.push(comment);
-				initBody();
-				scopes.$emit('commented.emit');
-			};
-
-			scopes.$on('userAdded.broadcast', function () {
-				console.log('---- user added! ----');
-			});
-
-			Promise.all([new Promise(function (resolve, reject) {
-				_this.Directive_.getController(controllers, function (controller) {
-					return controller ? resolve(controller) : reject(null);
-				});
-			}), new Promise(function (resolve, reject) {
-				_this.Directive_.getController(controllers, function (controller) {
-					return controller ? resolve(controller) : reject(null);
-				});
-			}), new Promise(function (resolve, reject) {
-				_this.Directive_.getController(controllers, function (controller) {
-					return controller ? resolve(controller) : reject(null);
-				});
-			})]).then(function (results) {
-				console.log('RESULTS: ', results);
-			}, function (err) {
-				console.log('ERROR: ', err);
-			});
-		}
-	}]);
-
-	return TodoItem;
-}();
-
-TodoItem.getInstance.$inject = ['Directive'];
-
-app.directive('todoItem', TodoItem.getInstance);
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var TodoList = function () {
 	_createClass(TodoList, null, [{
 		key: 'getInstance',
@@ -328,7 +239,7 @@ var TodoList = function () {
 		this.require = ['^^todoBox'];
 		this.restrict = 'E';
 		this.scope = { users: '=setUsers' };
-		this.template = '\n\n<h4>TODOs</h4>\n<ul>\n\t<li ng-repeat="user in users">\n\t\t<todo-item set-user="user"></todo-item>\n\t</li>\n</ul>\n\n\t\t';
+		this.template = '\n\n<div class="todo-list">\n\t<h4>TODOs</h4>\n\t<ul class="todo-list-content">\n\t\t<li ng-repeat="user in users">\n\t\t\t<todo-list-item set-user="user"></todo-list-item>\n\t\t</li>\n\t</ul>\n</div>\n\n\t\t';
 	}
 
 	_createClass(TodoList, [{
@@ -360,6 +271,98 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var TodoListItem = function () {
+	_createClass(TodoListItem, null, [{
+		key: 'getInstance',
+		value: function getInstance(Directive) {
+			TodoListItem.instance = new TodoListItem(Directive);
+			return TodoListItem.instance;
+		}
+	}]);
+
+	function TodoListItem(Directive) {
+		'use strict';
+
+		_classCallCheck(this, TodoListItem);
+
+		this.Directive_ = Directive;
+
+		this.require = ['^^?todoList', '^^?talkBoxs'];
+		this.restrict = 'E';
+		this.scope = { user: '=setUser' };
+		this.template = '\n\n<div class="todo-list-item">\n\t{{ user.name }}\n\t<ul class="comment">\n\t\t<li ng-repeat="comment in self.comments track by $index">\n\t\t\t{{ comment.body }} <small>({{ comment.createdAt }})</small>\n\t\t</li>\n\t</ul>\n\n\t<form ng-submit="self.comment()">\n\t\t<input type="text" ng-model="self.body">\n\t\t<button type="submit">comment</button>\n\t</form>\n</div>\n\n\t\t';
+	}
+
+	_createClass(TodoListItem, [{
+		key: 'link',
+		value: function link(scopes, attrs, elemensts, controllers) {
+			var _this = this;
+
+			console.log('TodoListItem');
+
+
+			scopes.self = {
+				body: '',
+				comments: []
+			};
+
+			var self = scopes.self;
+
+			var initBody = function initBody() {
+				self.body = '';
+			};
+
+			self.comment = function () {
+				if (self.body) {
+					return addComment(self.body);
+				}
+			};
+
+			var addComment = function addComment(comment) {
+				self.comments.push({
+					body: comment,
+					createdAt: moment().format('YYYY-MM-DD HH:mm:ss')
+				});
+				initBody();
+				scopes.$emit('commented.emit');
+			};
+
+			scopes.$on('userAdded.broadcast', function () {
+				console.log('---- user added! ----');
+			});
+
+			Promise.all([new Promise(function (resolve, reject) {
+				_this.Directive_.getController(controllers, function (controller) {
+					return controller ? resolve(controller) : reject(null);
+				});
+			}), new Promise(function (resolve, reject) {
+				_this.Directive_.getController(controllers, function (controller) {
+					return controller ? resolve(controller) : reject(null);
+				});
+			}), new Promise(function (resolve, reject) {
+				_this.Directive_.getController(controllers, function (controller) {
+					return controller ? resolve(controller) : reject(null);
+				});
+			})]).then(function (results) {
+				console.log('RESULTS: ', results);
+			}, function (err) {
+				console.log('ERROR: ', err);
+			});
+		}
+	}]);
+
+	return TodoListItem;
+}();
+
+TodoListItem.getInstance.$inject = ['Directive'];
+
+app.directive('todoListItem', TodoListItem.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var UserBox = function () {
 	_createClass(UserBox, null, [{
 		key: 'getInstance',
@@ -380,7 +383,7 @@ var UserBox = function () {
 		this.require = ['^^todoBox'];
 		this.restrict = 'E';
 		this.scope = { users: '=setUsers' };
-		this.template = '\n\n<h4>USER LIST</h4>\n<ul>\n\t<li ng-repeat="user in self.users">{{ user.id }}: {{ user.name }}</li>\n</ul>\n\n<form ng-submit="self.add()">\n\t<input type="text" ng-model="self.userName">\n\t<button type="submit">send</button>\n</form>\n\n\t\t';
+		this.template = '\n\n<div class="user-box">\n\t<h4>USER LIST</h4>\n\t<ul>\n\t\t<li ng-repeat="user in self.users">{{ user.id }}: {{ user.name }}</li>\n\t</ul>\n\n\t<form ng-submit="self.add()">\n\t\t<input type="text" ng-model="self.userName">\n\t\t<button type="submit">add</button>\n\t</form>\n</div>\n\n\t\t';
 	}
 
 	_createClass(UserBox, [{

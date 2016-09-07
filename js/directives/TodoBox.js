@@ -15,13 +15,13 @@ class TodoBox {
 		this.template = `
 
 <div class="todo-box">
-	<nav>
+	<nav class="todo-box-menu">
 		<ul>
 			<li ng-click="self.moveContent('user')" ng-class="{ active: self.content.user }">user</li>
 			<li ng-click="self.moveContent('talk')"  ng-class="{ active: self.content.talk }">talk</li>
 		</ul>
 	</nav>
-	<div class="content">
+	<div class="todo-box-content">
 		<section ng-if="self.content.user">
 			<user-box set-users="self.users"></user-box>
 		</section>

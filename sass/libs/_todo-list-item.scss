@@ -1,0 +1,9 @@
+.todo-list-item {
+	.comment {
+		> li {
+			small {
+				color: #aaa;
+			}
+		}
+	}
+}

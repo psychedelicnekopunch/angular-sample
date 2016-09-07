@@ -168,3 +168,13 @@ html, body { color: #444; font-size: 13px; line-height: 150%; padding: 0; margin
 a { color: #00a; text-decoration: none; }
 
 a:hover { color: #04e; text-decoration: underline; }
+
+.header-box { background: #eee; padding: 3px 5px; }
+
+.todo-box-menu ul { list-style-type: none; }
+
+.todo-box-menu ul li { background: #eee; display: inline-block; padding: 5px 15px; cursor: pointer; }
+
+.todo-box-menu ul li.active { background: #ccc; }
+
+.todo-list-item .comment > li small { color: #aaa; }
