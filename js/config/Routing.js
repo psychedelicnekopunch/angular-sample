@@ -19,6 +19,12 @@ class Routing {
 				templateUrl  : '/templates/todo/index.html',
 				controller   : 'TodoController',
 				controllerAs : 'self',
+			})
+			// クッキーテスト
+			.when('/cookie.html', {
+				templateUrl  : '/templates/cookie/index.html',
+				controller   : 'CookieController',
+				controllerAs : 'self',
 			});
 
 		/*$locationProvider.html5Mode({
