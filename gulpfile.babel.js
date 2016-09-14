@@ -21,6 +21,7 @@ gulp.task('sass', () => {
 gulp.task('jsLib', () => {
 	gulp.src([
 			'bower_components/moment/min/moment-with-locales.min.js',
+			'bower_components/js-cookie/src/js.cookie.js',
 			'bower_components/*/*.min.js',
 		])
 		.pipe($.concat('angular.js'))

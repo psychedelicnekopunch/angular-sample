@@ -29,6 +29,10 @@ var Routing = function () {
 			templateUrl: '/templates/todo/index.html',
 			controller: 'TodoController',
 			controllerAs: 'self'
+		}).when('/cookie.html', {
+			templateUrl: '/templates/cookie/index.html',
+			controller: 'CookieController',
+			controllerAs: 'self'
 		});
 
 		$locationProvider.html5Mode({
@@ -44,6 +48,19 @@ var Routing = function () {
 Routing.getInstance.$inject = ['$routeProvider', '$locationProvider'];
 
 app.config(Routing.getInstance);
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CookieController = function CookieController() {
+	'use strict';
+
+	_classCallCheck(this, CookieController);
+
+	this.initialized = true;
+};
+
+app.controller('CookieController', CookieController);
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88,6 +105,90 @@ var TodoController = function TodoController($timeout) {
 TodoController.$inject = ['$timeout'];
 
 app.controller('TodoController', TodoController);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CookieBox = function () {
+	_createClass(CookieBox, null, [{
+		key: 'getInstance',
+		value: function getInstance(Cookie) {
+			CookieBox.instance = new CookieBox(Cookie);
+			return CookieBox.instance;
+		}
+	}]);
+
+	function CookieBox(Cookie) {
+		'use strict';
+
+		_classCallCheck(this, CookieBox);
+
+		this.Cookie_ = Cookie;
+
+		this.restrict = 'E';
+		this.scope = {}, this.template = '\n\n<div class="cookie-box">\n\t<ul>\n\t\t<li ng-repeat="list in self.cookies">\n\t\t\t{{ ::list }} <span ng-click="self.removeCookie(list.key)">[x]</span>\n\t\t</li>\n\t</ul>\n\t<form ng-submit="self.setCookie()">\n\t\t<label>\n\t\t\tkey: <input type="text" ng-model="self.cookieKey">\n\t\t</label>\n\t\t<label>\n\t\t\tvalue: <input type="text" ng-model="self.cookieValue">\n\t\t</label>\n\t\t<div>\n\t\t\t<button type="submit">send</button>\n\t\t</div>\n\t</form>\n</div>\n\n\t\t';
+	}
+
+	_createClass(CookieBox, [{
+		key: 'controller',
+		value: function controller() {}
+	}, {
+		key: 'link',
+		value: function link(scopes, attrs, elemensts, controllers) {
+			var _this = this;
+
+			console.log('CookieBox');
+
+			scopes.self = {
+				cookies: [],
+				cookieKey: null,
+				cookieValue: null,
+				addCookie: function addCookie() {},
+				removeCookie: function removeCookie() {}
+			};
+
+			var self = scopes.self;
+
+			var init = function init() {
+				initCookieFields();
+				_this.Cookie_.getList(function (lists) {
+					self.cookies = lists;
+				});
+
+				_this.Cookie_.get('test', function (cookie) {
+					console.log(cookie);
+				});
+			};
+
+			var initCookieFields = function initCookieFields() {
+				self.cookieKey = null;
+				self.cookieValue = null;
+			};
+
+			self.setCookie = function () {
+				_this.Cookie_.put(self.cookieKey, self.cookieValue, 1, function (res) {
+					init();
+				});
+			};
+
+			self.removeCookie = function (key) {
+				_this.Cookie_.remove(key, function (res) {
+					init();
+				});
+			};
+
+			init();
+		}
+	}]);
+
+	return CookieBox;
+}();
+
+CookieBox.getInstance.$inject = ['Cookie'];
+
+app.directive('cookieBox', CookieBox.getInstance);
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -442,6 +543,84 @@ var UserBox = function () {
 UserBox.getInstance.$inject = ['Directive', 'User'];
 
 app.directive('userBox', UserBox.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Cookie = function () {
+	_createClass(Cookie, null, [{
+		key: 'getInstance',
+		value: function getInstance() {
+			Cookie.instance = new Cookie();
+			return Cookie.instance;
+		}
+	}]);
+
+	function Cookie() {
+		_classCallCheck(this, Cookie);
+	}
+
+	_createClass(Cookie, [{
+		key: 'getList',
+		value: function getList() {
+			var callback = arguments.length <= 0 || arguments[0] === undefined ? function () {} : arguments[0];
+
+			var lists = Cookies.get() ? Cookies.get() : [];
+			var res = [];
+			angular.forEach(lists, function (value, key) {
+				res.push({ key: key, value: value });
+			});
+			callback(res);
+		}
+	}, {
+		key: 'get',
+		value: function get(key) {
+			var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+
+			if (!key) {
+				callback(null);
+				return;
+			}
+			var res = Cookies.get(key) ? Cookies.get(key) : null;
+			callback(res);
+		}
+	}, {
+		key: 'put',
+		value: function put(key, value, expire) {
+			var callback = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
+
+			if (!key || !value) {
+				callback(false);
+				return;
+			}
+			Cookies.set(key, value, {
+				expires: expire ? expire : 1,
+				path: '/'
+			});
+			callback(true);
+		}
+	}, {
+		key: 'remove',
+		value: function remove(key) {
+			var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+
+			if (!key) {
+				callback(false);
+				return;
+			}
+			Cookies.remove(key, {
+				path: '/'
+			});
+			callback(true);
+		}
+	}]);
+
+	return Cookie;
+}();
+
+app.factory('Cookie', Cookie.getInstance);
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
