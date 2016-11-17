@@ -25,11 +25,11 @@ var Routing = function () {
 			templateUrl: '/templates/index/index.html',
 			controller: 'IndexController',
 			controllerAs: 'self'
-		}).when('/todo.html', {
+		}).when('/todo', {
 			templateUrl: '/templates/todo/index.html',
 			controller: 'TodoController',
 			controllerAs: 'self'
-		}).when('/cookie.html', {
+		}).when('/cookie', {
 			templateUrl: '/templates/cookie/index.html',
 			controller: 'CookieController',
 			controllerAs: 'self'
