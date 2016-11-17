@@ -15,23 +15,18 @@ class Routing {
 				controllerAs : 'self',
 			})
 			// ToDoサンプル
-			.when('/todo.html', {
+			.when('/todo', {
 				templateUrl  : '/templates/todo/index.html',
 				controller   : 'TodoController',
 				controllerAs : 'self',
 			})
 			// クッキーテスト
-			.when('/cookie.html', {
+			.when('/cookie', {
 				templateUrl  : '/templates/cookie/index.html',
 				controller   : 'CookieController',
 				controllerAs : 'self',
 			});
 
-		/*$locationProvider.html5Mode({
-			enabled      : true,
-			requireBase  : true,
-			rewriteLinks : false,
-		});*/
 		$locationProvider.html5Mode({
 			enabled      : true,
 			requireBase  : true,
