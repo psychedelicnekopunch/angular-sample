@@ -38,7 +38,7 @@ class CookieAngularBox {
 
 	controller() {}
 
-	link(scopes, attrs, elemensts, controllers) {
+	link(scopes, elemensts, attrs, controllers) {
 		console.log('CookieAngularBox');
 
 		scopes.self = {

@@ -1,5 +1,5 @@
 class IndexController {
-	constructor($timeout) {
+	constructor(Location, $timeout) {
 		'use strict';
 
 		this.initialized = false;
@@ -11,6 +11,6 @@ class IndexController {
 	}
 }
 
-IndexController.$inject = ['$timeout'];
+IndexController.$inject = ['Location', '$timeout'];
 
 app.controller('IndexController', IndexController);

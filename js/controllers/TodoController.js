@@ -1,5 +1,5 @@
 class TodoController {
-	constructor($timeout) {
+	constructor(Location, $timeout) {
 		'use strict';
 
 		this.initialized = false;
@@ -11,6 +11,6 @@ class TodoController {
 	}
 }
 
-TodoController.$inject = ['$timeout'];
+TodoController.$inject = ['Location', '$timeout'];
 
 app.controller('TodoController', TodoController);

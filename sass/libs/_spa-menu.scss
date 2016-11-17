@@ -1,0 +1,31 @@
+.spa-menu {
+	.spa-menu-list {
+		display: flex;
+		align-items: center;
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		> li {
+			flex: 1;
+			a {
+				display: flex;
+				align-items: center;
+				background: #f9f9f9;
+				padding: 10px 0;
+				&:hover {
+					background: #ddd;
+				}
+				span {
+					width: 100%;
+					flex: 1;
+					text-align: center;
+				}
+			}
+		}
+		> li.active {
+			a {
+				background: #eee;
+			}
+		}
+	}
+}

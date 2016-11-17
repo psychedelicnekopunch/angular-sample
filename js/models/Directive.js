@@ -11,25 +11,25 @@ class Directive {
 
 	getController(controllers, callback = () => {}) {
 
-        if (!controllers) {
-            return callback(null);
-        }
-        if (!angular.isArray(controllers)) {
-            return callback(controllers);
-        }
+		if (!controllers) {
+			return callback(null);
+		}
+		if (!angular.isArray(controllers)) {
+			return callback(controllers);
+		}
 
-        var res = null;
+		var res = null;
 
-        angular.forEach(controllers, (controller) => {
-            if (res) {
-                return;
-            }
-            if (controller) {
-                res = controller;
-            }
-        });
+		angular.forEach(controllers, (controller) => {
+			if (res) {
+				return;
+			}
+			if (controller) {
+				res = controller;
+			}
+		});
 
-        return (res) ? callback(res) : callback(null);
+		return (res) ? callback(res) : callback(null);
 	}
 }
 

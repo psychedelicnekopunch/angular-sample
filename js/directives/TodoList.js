@@ -28,7 +28,7 @@ class TodoList {
 
 	controller() {}
 
-	link(scopes, attrs, elemensts, controllers) {
+	link(scopes, elemensts, attrs, controllers) {
 
 		this.Directive_.getController(controllers, (controller) => {
 			console.log(controller);
