@@ -32,7 +32,7 @@ class TodoListItem {
 		`;
 	}
 
-	link(scopes, attrs, elemensts, controllers) {
+	link(scopes, elemensts, attrs, controllers) {
 		console.log('TodoListItem');
 		// console.log(scopes);
 		// console.log(attrs);
