@@ -33,6 +33,22 @@ var Routing = function () {
 			templateUrl: '/templates/cookie/index.html',
 			controller: 'CookieController',
 			controllerAs: 'self'
+		}).when('/spa', {
+			templateUrl: '/templates/spa/index.html',
+			controller: 'SpaController',
+			controllerAs: 'self'
+		}).when('/spa/users', {
+			templateUrl: '/templates/spa/users.html',
+			controller: 'SpaUsersController',
+			controllerAs: 'self'
+		}).when('/spa/user/:user', {
+			templateUrl: '/templates/spa/user.html',
+			controller: 'SpaUserController',
+			controllerAs: 'self'
+		}).when('/spa/message', {
+			templateUrl: '/templates/spa/message.html',
+			controller: 'SpaMessageController',
+			controllerAs: 'self'
 		});
 
 		$locationProvider.html5Mode({
@@ -65,7 +81,7 @@ app.controller('CookieController', CookieController);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var IndexController = function IndexController($timeout) {
+var IndexController = function IndexController(Location, $timeout) {
 	'use strict';
 
 	var _this = this;
@@ -80,14 +96,104 @@ var IndexController = function IndexController($timeout) {
 	}, 500);
 };
 
-IndexController.$inject = ['$timeout'];
+IndexController.$inject = ['Location', '$timeout'];
 
 app.controller('IndexController', IndexController);
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TodoController = function TodoController($timeout) {
+var SpaController = function SpaController(Location, $timeout) {
+	'use strict';
+
+	var _this = this;
+
+	_classCallCheck(this, SpaController);
+
+	this.initialized = false;
+
+	$timeout(function () {
+		_this.initialized = true;
+		console.log('SpaController.initialized');
+	}, 150);
+};
+
+SpaController.$inject = ['Location', '$timeout'];
+
+app.controller('SpaController', SpaController);
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaMessageController = function SpaMessageController(Location, $timeout) {
+	'use strict';
+
+	var _this = this;
+
+	_classCallCheck(this, SpaMessageController);
+
+	this.initialized = false;
+
+	$timeout(function () {
+		_this.initialized = true;
+		console.log('SpaMessageController.initialized');
+	}, 150);
+};
+
+SpaMessageController.$inject = ['Location', '$timeout'];
+
+app.controller('SpaMessageController', SpaMessageController);
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaUserController = function SpaUserController(Location, $routeParams, $timeout) {
+	'use strict';
+
+	var _this = this;
+
+	_classCallCheck(this, SpaUserController);
+
+	this.initialized = false;
+
+	this.routeParams = $routeParams;
+
+	$timeout(function () {
+		_this.initialized = true;
+		console.log('SpaUserController.initialized');
+	}, 150);
+};
+
+SpaUserController.$inject = ['Location', '$routeParams', '$timeout'];
+
+app.controller('SpaUserController', SpaUserController);
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaUsersController = function SpaUsersController(Location, $timeout) {
+	'use strict';
+
+	var _this = this;
+
+	_classCallCheck(this, SpaUsersController);
+
+	this.initialized = false;
+
+	$timeout(function () {
+		_this.initialized = true;
+		console.log('SpaUsersController.initialized');
+	}, 150);
+};
+
+SpaUsersController.$inject = ['Location', '$timeout'];
+
+app.controller('SpaUsersController', SpaUsersController);
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TodoController = function TodoController(Location, $timeout) {
 	'use strict';
 
 	var _this = this;
@@ -102,7 +208,7 @@ var TodoController = function TodoController($timeout) {
 	}, 500);
 };
 
-TodoController.$inject = ['$timeout'];
+TodoController.$inject = ['Location', '$timeout'];
 
 app.controller('TodoController', TodoController);
 'use strict';
@@ -136,7 +242,7 @@ var CookieAngularBox = function () {
 		value: function controller() {}
 	}, {
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 			var _this = this;
 
 			console.log('CookieAngularBox');
@@ -220,7 +326,7 @@ var CookieBox = function () {
 		value: function controller() {}
 	}, {
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 			var _this = this;
 
 			console.log('CookieBox');
@@ -307,6 +413,470 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var SpaMenu = function () {
+	_createClass(SpaMenu, null, [{
+		key: 'getInstance',
+		value: function getInstance(LocalStorage) {
+			SpaMenu.instance = new SpaMenu(LocalStorage);
+			return SpaMenu.instance;
+		}
+	}]);
+
+	function SpaMenu(LocalStorage) {
+		'use strict';
+
+		_classCallCheck(this, SpaMenu);
+
+		this.LocalStorage_ = LocalStorage;
+
+		this.restrict = 'E';
+		this.scope = {};
+		this.template = '\n\n<nav class="spa-menu">\n\t<ul class="spa-menu-list">\n\t\t<li ng-class="{ active: self.active.top }"><a href="/spa"><span>top</span></a></li>\n\t\t<li ng-class="{ active: self.active.users }"><a href="/spa/users"><span>users</span></a></li>\n\t\t<li ng-class="{ active: self.active.message }"><a href="/spa/message"><span>message</span></a></li>\n\t</ul>\n</nav>\n\n\t\t';
+	}
+
+	_createClass(SpaMenu, [{
+		key: 'controller',
+		value: function controller() {
+			return {
+				name: 'spaMenu'
+			};
+		}
+	}, {
+		key: 'link',
+		value: function link(scopes, elemensts, attrs, controllers) {
+			var _this = this;
+
+			console.log('spaMenu');
+
+			scopes.self = {
+				active: {
+					top: false,
+					users: false,
+					message: false
+				}
+			};
+
+			var self = scopes.self;
+
+			var init = function init() {
+				var active = attrs.active ? attrs.active : _this.LocalStorage_.get('menu');
+				angular.forEach(self.active, function (value, key) {
+					self.active[key] = false;
+				});
+				if (active) {
+					self.active[active] = true;
+					_this.LocalStorage_.put('menu', active);
+				} else {
+					self.active.top = true;
+				}
+			};
+
+			init();
+		}
+	}]);
+
+	return SpaMenu;
+}();
+
+SpaMenu.getInstance.$inject = ['LocalStorage'];
+
+app.directive('spaMenu', SpaMenu.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaMessage = function () {
+	_createClass(SpaMessage, null, [{
+		key: 'getInstance',
+		value: function getInstance(TemporaryStorage) {
+			SpaMessage.instance = new SpaMessage(TemporaryStorage);
+			return SpaMessage.instance;
+		}
+	}]);
+
+	function SpaMessage(TemporaryStorage) {
+		'use strict';
+
+		_classCallCheck(this, SpaMessage);
+
+		this.TemporaryStorage_ = TemporaryStorage;
+
+		this.restrict = 'E';
+		this.scope = {};
+		this.template = '\n\n<div ng-if="self.name">\n\tHello, <strong>{{ self.name }}</strong>.\n\t<div ng-if="self.users.length > 0">\n\t\tto: <select ng-model="self.user" ng-change="self.setUser()">\n\t\t\t<option value="">-- select user --</option>\n\t\t\t<option ng-repeat="user in self.users" value="{{ user }}">{{ user }}</option>\n\t\t</select>\n\t</div>\n</div>\n<div ng-if="!self.name">\n\t<a href="/spa">&lt;&lt; put your name</a>\n</div>\n\n<div ng-if="self.users.length === 0">\n\t<a href="/spa/users">&lt;&lt; add user</a>\n</div>\n\n<div ng-if="self.name && self.user">\n\t<form ng-submit="self.send()">\n\t\t<input type="text" ng-model="self.body">\n\t\t<button type="submit">send message</button>\n\t</form>\n\t<div>\n\t\t<strong><a ng-href="/spa/user/{{ self.user }}">{{ self.user }}</a></strong>\'s message list\n\t</div>\n\t<ul>\n\t\t<li ng-repeat="message in self.messages" ng-if="message.user === self.user">\n\t\t\t{{ message.name }}: {{ message.body }}\n\t\t</li>\n\t</ul>\n</div>\n\n\t\t';
+	}
+
+	_createClass(SpaMessage, [{
+		key: 'controller',
+		value: function controller() {
+			return {
+				name: 'spaMessage'
+			};
+		}
+	}, {
+		key: 'link',
+		value: function link(scopes, elemensts, attrs, controllers) {
+			var _this = this;
+
+			console.log('spaMessage');
+
+			scopes.self = {
+				name: '',
+				user: '',
+				body: '',
+				users: [],
+				messages: [],
+				setUser: function setUser() {},
+				send: function send() {}
+			};
+
+			var self = scopes.self;
+
+			var init = function init() {
+				initName();
+				initUsers(function () {
+					initUser();
+				});
+				initMessages();
+			};
+
+			var initBody = function initBody() {
+				self.body = '';
+			};
+
+			var initName = function initName() {
+				var callback = arguments.length <= 0 || arguments[0] === undefined ? function () {} : arguments[0];
+
+				var name = _this.TemporaryStorage_.get('myName');
+				if (name) {
+					self.name = name;
+				}
+			};
+
+			var initUser = function initUser() {
+				var user = _this.TemporaryStorage_.get('user');
+				if (user) {
+					var exists = false;
+					angular.forEach(self.users, function (value) {
+						if (user === value) {
+							exists = true;
+						}
+					});
+					if (exists) {
+						self.user = user;
+					}
+				}
+			};
+
+			var initUsers = function initUsers() {
+				var callback = arguments.length <= 0 || arguments[0] === undefined ? function () {} : arguments[0];
+
+				var users = _this.TemporaryStorage_.get('users');
+				if (users) {
+					self.users = users;
+				}
+				callback();
+			};
+
+			var initMessages = function initMessages() {
+				var messages = _this.TemporaryStorage_.get('messages');
+				if (messages) {
+					self.messages = messages;
+				}
+			};
+
+			self.setUser = function () {
+				_this.TemporaryStorage_.put('user', self.user);
+			};
+
+			self.send = function () {
+				if (!self.body) {
+					return;
+				}
+				self.messages.push({
+					name: self.name,
+					user: self.user,
+					body: self.body
+				});
+				_this.TemporaryStorage_.put('messages', self.messages);
+				initBody();
+			};
+
+			init();
+		}
+	}]);
+
+	return SpaMessage;
+}();
+
+SpaMessage.getInstance.$inject = ['TemporaryStorage'];
+
+app.directive('spaMessage', SpaMessage.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaTop = function () {
+	_createClass(SpaTop, null, [{
+		key: 'getInstance',
+		value: function getInstance(TemporaryStorage) {
+			SpaTop.instance = new SpaTop(TemporaryStorage);
+			return SpaTop.instance;
+		}
+	}]);
+
+	function SpaTop(TemporaryStorage) {
+		'use strict';
+
+		_classCallCheck(this, SpaTop);
+
+		this.TemporaryStorage_ = TemporaryStorage;
+
+		this.restrict = 'E';
+		this.scope = {};
+		this.template = '\n\nyou name: <input type="text" ng-model="self.name" ng-change="self.setName()">\n<div ng-if="self.name">\n\t<a href="/spa/message">send message &gt;&gt;</a>\n</div>\n\n\t\t';
+	}
+
+	_createClass(SpaTop, [{
+		key: 'controller',
+		value: function controller() {
+			return {
+				name: 'spaTop'
+			};
+		}
+	}, {
+		key: 'link',
+		value: function link(scopes, elemensts, attrs, controllers) {
+			var _this = this;
+
+			console.log('spaTop');
+
+			scopes.self = {
+				name: '',
+				setName: function setName() {}
+			};
+
+			var self = scopes.self;
+
+			var init = function init() {
+				initName();
+			};
+
+			var initName = function initName() {
+				var name = _this.TemporaryStorage_.get('myName');
+				if (name) {
+					self.name = name;
+				}
+			};
+
+			self.setName = function () {
+				_this.TemporaryStorage_.put('myName', self.name);
+			};
+
+			init();
+		}
+	}]);
+
+	return SpaTop;
+}();
+
+SpaTop.getInstance.$inject = ['TemporaryStorage'];
+
+app.directive('spaTop', SpaTop.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaUser = function () {
+	_createClass(SpaUser, null, [{
+		key: 'getInstance',
+		value: function getInstance(TemporaryStorage) {
+			SpaUser.instance = new SpaUser(TemporaryStorage);
+			return SpaUser.instance;
+		}
+	}]);
+
+	function SpaUser(TemporaryStorage) {
+		'use strict';
+
+		_classCallCheck(this, SpaUser);
+
+		this.TemporaryStorage_ = TemporaryStorage;
+
+		this.restrict = 'E';
+		this.scope = { routeParams: '=routeParams' };
+		this.template = '\n\n<div ng-if="self.isUser">\n\t<div>User Data</div>\n\tname: <strong>{{ self.user }}</strong>\n</div>\n\n<div ng-if="!self.isUser">\n\tNot Found <strong>{{ self.user }}</strong>\n</div>\n\n\t\t';
+	}
+
+	_createClass(SpaUser, [{
+		key: 'controller',
+		value: function controller() {
+			return {
+				name: 'spaUser'
+			};
+		}
+	}, {
+		key: 'link',
+		value: function link(scopes, elemensts, attrs, controllers) {
+			var _this = this;
+
+			console.log('spaUser');
+
+			scopes.self = {
+				isUser: false,
+				user: ''
+			};
+
+			var self = scopes.self;
+
+			var users = [];
+
+			var init = function init() {
+
+				self.user = scopes.routeParams.user ? scopes.routeParams.user : '';
+
+				initUsers(function () {
+					checkExistsUser();
+				});
+			};
+
+			var initUsers = function initUsers() {
+				var callback = arguments.length <= 0 || arguments[0] === undefined ? function () {} : arguments[0];
+
+				var lists = _this.TemporaryStorage_.get('users');
+				if (lists) {
+					users = lists;
+				}
+				callback();
+			};
+
+			var checkExistsUser = function checkExistsUser() {
+				if (!self.user) {
+					return;
+				}
+				self.isUser = false;
+				angular.forEach(users, function (user) {
+					if (self.user === user) {
+						self.isUser = true;
+					}
+				});
+			};
+
+			init();
+		}
+	}]);
+
+	return SpaUser;
+}();
+
+SpaUser.getInstance.$inject = ['TemporaryStorage'];
+
+app.directive('spaUser', SpaUser.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SpaUsers = function () {
+	_createClass(SpaUsers, null, [{
+		key: 'getInstance',
+		value: function getInstance(TemporaryStorage) {
+			SpaUsers.instance = new SpaUsers(TemporaryStorage);
+			return SpaUsers.instance;
+		}
+	}]);
+
+	function SpaUsers(TemporaryStorage) {
+		'use strict';
+
+		_classCallCheck(this, SpaUsers);
+
+		this.TemporaryStorage_ = TemporaryStorage;
+
+		this.restrict = 'E';
+		this.scope = {};
+		this.template = '\n\n<form ng-submit="self.add()">\n\t<input type="text" ng-model="self.name">\n\t<button type="submit">add user</button>\n</form>\n<div ng-if="self.users.length > 0">\n\t<a href="/spa/message">send message &gt;&gt;</a><br>\n\t<hr>\n\t<strong>user list</strong>\n\t<ul>\n\t\t<li ng-repeat="user in self.users">\n\t\t\t<a ng-href="/spa/user/{{ user }}">{{ user }}</a>\n\t\t</li>\n\t</ul>\n</div>\n<div ng-if="self.users.length === 0">\n\t<strong>no users</strong>\n</div>\n\n\t\t';
+	}
+
+	_createClass(SpaUsers, [{
+		key: 'controller',
+		value: function controller() {
+			return {
+				name: 'spaUsers'
+			};
+		}
+	}, {
+		key: 'link',
+		value: function link(scopes, elemensts, attrs, controllers) {
+			var _this = this;
+
+			console.log('spaUsers');
+
+			scopes.self = {
+				name: '',
+				users: [],
+				add: function add() {}
+			};
+
+			var self = scopes.self;
+
+			var init = function init() {
+				initUsers();
+			};
+
+			var initName = function initName() {
+				self.name = '';
+			};
+
+			var initUsers = function initUsers() {
+				var users = _this.TemporaryStorage_.get('users');
+				if (users) {
+					self.users = users;
+				}
+			};
+
+			self.add = function () {
+				console.log(self.name);
+				if (!self.name) {
+					return;
+				}
+				var exists = false;
+				angular.forEach(self.users, function (value) {
+					if (self.name === value) {
+						exists = true;
+					}
+				});
+				if (exists) {
+					return;
+				}
+				self.users.push(self.name);
+				_this.TemporaryStorage_.put('users', self.users);
+				initName();
+			};
+
+			init();
+		}
+	}]);
+
+	return SpaUsers;
+}();
+
+SpaUsers.getInstance.$inject = ['TemporaryStorage'];
+
+app.directive('spaUsers', SpaUsers.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var TodoBox = function () {
 	_createClass(TodoBox, null, [{
 		key: 'getInstance',
@@ -332,7 +902,7 @@ var TodoBox = function () {
 		value: function controller() {}
 	}, {
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 			var _this = this;
 
 			console.log('TodoBox');
@@ -432,7 +1002,7 @@ var TodoList = function () {
 		value: function controller() {}
 	}, {
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 
 			this.Directive_.getController(controllers, function (controller) {
 				console.log(controller);
@@ -480,7 +1050,7 @@ var TodoListItem = function () {
 
 	_createClass(TodoListItem, [{
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 			var _this = this;
 
 			console.log('TodoListItem');
@@ -573,7 +1143,7 @@ var UserBox = function () {
 
 	_createClass(UserBox, [{
 		key: 'link',
-		value: function link(scopes, attrs, elemensts, controllers) {
+		value: function link(scopes, elemensts, attrs, controllers) {
 			var _this = this;
 
 			console.log('userBox');
@@ -712,50 +1282,141 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Directive = function () {
-    _createClass(Directive, null, [{
-        key: 'getInstance',
-        value: function getInstance() {
-            Directive.instance = new Directive();
-            return Directive.instance;
-        }
-    }]);
+	_createClass(Directive, null, [{
+		key: 'getInstance',
+		value: function getInstance() {
+			Directive.instance = new Directive();
+			return Directive.instance;
+		}
+	}]);
 
-    function Directive() {
-        _classCallCheck(this, Directive);
-    }
+	function Directive() {
+		_classCallCheck(this, Directive);
+	}
 
-    _createClass(Directive, [{
-        key: 'getController',
-        value: function getController(controllers) {
-            var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+	_createClass(Directive, [{
+		key: 'getController',
+		value: function getController(controllers) {
+			var callback = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
 
 
-            if (!controllers) {
-                return callback(null);
-            }
-            if (!angular.isArray(controllers)) {
-                return callback(controllers);
-            }
+			if (!controllers) {
+				return callback(null);
+			}
+			if (!angular.isArray(controllers)) {
+				return callback(controllers);
+			}
 
-            var res = null;
+			var res = null;
 
-            angular.forEach(controllers, function (controller) {
-                if (res) {
-                    return;
-                }
-                if (controller) {
-                    res = controller;
-                }
-            });
+			angular.forEach(controllers, function (controller) {
+				if (res) {
+					return;
+				}
+				if (controller) {
+					res = controller;
+				}
+			});
 
-            return res ? callback(res) : callback(null);
-        }
-    }]);
+			return res ? callback(res) : callback(null);
+		}
+	}]);
 
-    return Directive;
+	return Directive;
 }();
 
 app.factory('Directive', Directive.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LocalStorage = function () {
+	_createClass(LocalStorage, null, [{
+		key: 'getInstance',
+		value: function getInstance() {
+			LocalStorage.instance = new LocalStorage();
+			return LocalStorage.instance;
+		}
+	}]);
+
+	function LocalStorage() {
+		_classCallCheck(this, LocalStorage);
+
+		console.log('init class LocalStorage');
+	}
+
+	_createClass(LocalStorage, [{
+		key: 'get',
+		value: function get(key) {
+			if (this.exists(key)) {
+				return localStorage.getItem(key);
+			}
+			return null;
+		}
+	}, {
+		key: 'put',
+		value: function put(key, value) {
+			if (!key || !value) {
+				return false;
+			}
+			localStorage.setItem(key, value);
+			return true;
+		}
+	}, {
+		key: 'remove',
+		value: function remove(key) {
+			if (this.exists(key)) {
+				localStorage.removeItem(key);
+				return true;
+			}
+			return false;
+		}
+	}, {
+		key: 'exists',
+		value: function exists(key) {
+			if (!key) {
+				return false;
+			}
+			return localStorage.getItem(key) ? true : false;
+		}
+	}]);
+
+	return LocalStorage;
+}();
+
+app.factory('LocalStorage', LocalStorage.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Location = function () {
+	_createClass(Location, null, [{
+		key: 'getInstance',
+		value: function getInstance($rootScope, $location) {
+			Location.instance = new Location($rootScope, $location);
+			return Location.instance;
+		}
+	}]);
+
+	function Location($rootScope, $location) {
+		'use strict';
+
+		_classCallCheck(this, Location);
+
+		console.log('init class Location');
+		$rootScope.$on('$locationChangeSuccess', function (e, newUrl, oldUrl, newState, oldState) {});
+	}
+
+	return Location;
+}();
+
+Location.getInstance.$inject = ['$rootScope', '$location'];
+
+app.factory('Location', Location.getInstance);
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -838,6 +1499,68 @@ var NgCookie = function () {
 NgCookie.getInstance.$inject = ['$cookies'];
 
 app.factory('NgCookie', NgCookie.getInstance);
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TemporaryStorage = function () {
+	_createClass(TemporaryStorage, null, [{
+		key: 'getInstance',
+		value: function getInstance() {
+			TemporaryStorage.instance = new TemporaryStorage();
+			return TemporaryStorage.instance;
+		}
+	}]);
+
+	function TemporaryStorage() {
+		_classCallCheck(this, TemporaryStorage);
+
+		console.log('init class TemporaryStorage');
+		this.stores_ = {};
+	}
+
+	_createClass(TemporaryStorage, [{
+		key: 'get',
+		value: function get(key) {
+			if (this.exists(key)) {
+				return this.stores_[key];
+			}
+			return null;
+		}
+	}, {
+		key: 'put',
+		value: function put(key, value) {
+			if (!key || !value) {
+				return false;
+			}
+			this.stores_[key] = value;
+			return true;
+		}
+	}, {
+		key: 'remove',
+		value: function remove(key) {
+			if (this.exists(key)) {
+				delete this.stores_[key];
+				return true;
+			}
+			return false;
+		}
+	}, {
+		key: 'exists',
+		value: function exists(key) {
+			if (!key) {
+				return false;
+			}
+			return this.stores_.hasOwnProperty(key);
+		}
+	}]);
+
+	return TemporaryStorage;
+}();
+
+app.factory('TemporaryStorage', TemporaryStorage.getInstance);
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();

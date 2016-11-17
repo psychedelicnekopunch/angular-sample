@@ -4,7 +4,21 @@ a { color: #00a; text-decoration: none; }
 
 a:hover { color: #04e; text-decoration: underline; }
 
+.main { padding: 10px; }
+
 .header-box { background: #eee; padding: 3px 5px; }
+
+.spa-menu .spa-menu-list { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; list-style-type: none; padding: 0; margin: 0; }
+
+.spa-menu .spa-menu-list > li { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
+
+.spa-menu .spa-menu-list > li a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; background: #f9f9f9; padding: 10px 0; }
+
+.spa-menu .spa-menu-list > li a:hover { background: #ddd; }
+
+.spa-menu .spa-menu-list > li a span { width: 100%; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; text-align: center; }
+
+.spa-menu .spa-menu-list > li.active a { background: #eee; }
 
 .todo-box-menu ul { list-style-type: none; }
 
