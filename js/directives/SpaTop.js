@@ -15,6 +15,7 @@ class SpaTop {
 		this.template = `
 
 you name: <input type="text" ng-model="self.name" ng-change="self.setName()">
+<div ng-if="self.timestamp > 0"><small>(last updated at: {{ self.timestamp }})</small></div>
 <div ng-if="self.name">
 	<a href="/spa/message">send message &gt;&gt;</a>
 </div>
@@ -33,6 +34,7 @@ you name: <input type="text" ng-model="self.name" ng-change="self.setName()">
 
 		scopes.self = {
 			name: '',
+			timestamp: -1,
 			setName: () => {},
 		};
 
@@ -47,10 +49,17 @@ you name: <input type="text" ng-model="self.name" ng-change="self.setName()">
 			if (name) {
 				self.name = name;
 			}
+			initNameTimestamp();
+		};
+
+		const initNameTimestamp = () => {
+			self.timestamp = this.TemporaryStorage_.getTimestamp('myName');
+			console.log(self.timestamp);
 		};
 
 		self.setName = () => {
 			this.TemporaryStorage_.put('myName', self.name);
+			initNameTimestamp();
 		};
 
 		init();

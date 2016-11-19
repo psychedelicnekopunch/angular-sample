@@ -12,16 +12,26 @@ class TemporaryStorage {
 
 	get(key) {
 		if (this.exists(key)) {
-			return this.stores_[key];
+			return this.stores_[key].data;
 		}
 		return null;
+	}
+
+	getTimestamp(key) {
+		if (this.exists(key)) {
+			return this.stores_[key].timestamp;
+		}
+		return -1;
 	}
 
 	put(key, value) {
 		if (!key || !value) {
 			return false;
 		}
-		this.stores_[key] = value;
+		this.stores_[key] = {
+			data: value,
+			timestamp: Number(moment().format('X')),
+		};
 		return true;
 	}
 
