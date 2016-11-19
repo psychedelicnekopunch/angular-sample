@@ -638,7 +638,7 @@ var SpaTop = function () {
 
 		this.restrict = 'E';
 		this.scope = {};
-		this.template = '\n\nyou name: <input type="text" ng-model="self.name" ng-change="self.setName()">\n<div ng-if="self.name">\n\t<a href="/spa/message">send message &gt;&gt;</a>\n</div>\n\n\t\t';
+		this.template = '\n\nyou name: <input type="text" ng-model="self.name" ng-change="self.setName()">\n<div ng-if="self.timestamp > 0"><small>(last updated at: {{ self.timestamp }})</small></div>\n<div ng-if="self.name">\n\t<a href="/spa/message">send message &gt;&gt;</a>\n</div>\n\n\t\t';
 	}
 
 	_createClass(SpaTop, [{
@@ -657,6 +657,7 @@ var SpaTop = function () {
 
 			scopes.self = {
 				name: '',
+				timestamp: -1,
 				setName: function setName() {}
 			};
 
@@ -671,10 +672,17 @@ var SpaTop = function () {
 				if (name) {
 					self.name = name;
 				}
+				initNameTimestamp();
+			};
+
+			var initNameTimestamp = function initNameTimestamp() {
+				self.timestamp = _this.TemporaryStorage_.getTimestamp('myName');
+				console.log(self.timestamp);
 			};
 
 			self.setName = function () {
 				_this.TemporaryStorage_.put('myName', self.name);
+				initNameTimestamp();
 			};
 
 			init();
@@ -1525,9 +1533,17 @@ var TemporaryStorage = function () {
 		key: 'get',
 		value: function get(key) {
 			if (this.exists(key)) {
-				return this.stores_[key];
+				return this.stores_[key].data;
 			}
 			return null;
+		}
+	}, {
+		key: 'getTimestamp',
+		value: function getTimestamp(key) {
+			if (this.exists(key)) {
+				return this.stores_[key].timestamp;
+			}
+			return -1;
 		}
 	}, {
 		key: 'put',
@@ -1535,7 +1551,10 @@ var TemporaryStorage = function () {
 			if (!key || !value) {
 				return false;
 			}
-			this.stores_[key] = value;
+			this.stores_[key] = {
+				data: value,
+				timestamp: Number(moment().format('X'))
+			};
 			return true;
 		}
 	}, {
